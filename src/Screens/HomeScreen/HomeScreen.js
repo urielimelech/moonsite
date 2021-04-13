@@ -1,15 +1,22 @@
+import { useObserver } from 'mobx-react-lite'
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { NavigationButton } from '../../BaseComponents/NavigationButton'
+import { CustomList } from '../../BaseComponents/CustomList'
 import { Text } from '../../BaseComponents/Text'
 import { View } from '../../BaseComponents/View'
+import { useWardrobeStore } from '../../Context/WardrobeContext'
 import styles from './HomeScreenStyles'
 
 export const HomeScreen = () => {
 
-    return <View style={styles.container}>
-        <Text>hello here</Text>
-        <Link to="/pants">to pants</Link>
-        <NavigationButton path={'shoes'} label={'go to shoes now'} />
-    </View>
+    const wardrobeStore = useWardrobeStore()
+
+    return useObserver(() => (
+        <View style={styles.container}>
+            <View style={styles.listContainer}>
+                <CustomList>
+                    {wardrobeStore.shirts.map(shirt => <Text key={shirt.shirtId}>{shirt.shirtName}</Text>)}
+                </CustomList>
+            </View>
+        </View>
+    ))
 }
