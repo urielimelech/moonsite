@@ -7,8 +7,8 @@ export const NavBar = () => {
     return (
         <View>
             <H1 style={styles.mainHeader}>MoonSite Wardrobe App</H1>
-            <H5>NavBar</H5>
-            <CustomList>
+            <H5 style={styles.subHeader}>NavBar</H5>
+            <CustomList styles={styles.navigationContainer}>
                 <Link to="/">home</Link>
                 <Link to="/shoes">select shoes</Link>
                 <Link to="/pants">select pants</Link>
@@ -21,6 +21,17 @@ export const NavBar = () => {
 
 const styles = {
     mainHeader: {
-        textAlign: 'center'
-    }
+        textAlign: 'center',
+    },
+    subHeader: {
+        textAlign: 'center',
+    },
+    navigationContainer: {
+        listContainer: {
+
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-evenly'
+        }
+    },
 }

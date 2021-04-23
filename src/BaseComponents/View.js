@@ -1,6 +1,5 @@
 import React from 'react'
 
-export const View = props => {
-    const { children } = props
-    return <div {...props}>{children}</div>
+export const View = ({ children, style, ...props }) => {
+    return <div style={style} {...props}>{children}</div>
 }

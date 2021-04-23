@@ -1,11 +1,13 @@
 import React from 'react'
+import { H4 } from './Text'
+import { View } from './View'
 
-export const CustomList = ({ children, styles = {} }) => {
+export const CustomList = ({ children, styles = {}, listHeader }) => {
     const { listContainer, listItem } = styles
-    console.log(children)
-    return <ul style={listContainer ? styles?.listContainer : {}}>
+    return <View style={listContainer ? styles?.listContainer : {}}>
+        {listHeader && <H4 style={{textDecoration: 'underline'}}>{listHeader}</H4>}
         {children.map((child, index) => {
-            return <li key={index} style={listItem ? styles?.listItem : {}}>{child}</li>
+            return <View key={index} style={listItem ? styles?.listItem : {}}>{child}</View>
         })}
-    </ul>
+    </View>
 }
