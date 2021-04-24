@@ -12,7 +12,7 @@ export const ClothSetComponent = ({ clothSet, index, clothSetContainerStyle }) =
                 <SelectedProductComponent product={clothSet.pant} productContainerStyle={styles.productContainerStyle} />
                 <SelectedProductComponent product={clothSet.shoes} productContainerStyle={styles.productContainerStyle} />
             </View>
-            <Text>sum of sets sizes: {clothSet.shirt.size + clothSet.shoes.size + clothSet.pant.size}</Text>
+            <Text>sum of set sizes: {clothSet.shirt.size + clothSet.shoes.size + clothSet.pant.size}</Text>
         </View>
     )
 }

@@ -41,17 +41,14 @@ export const createWardrobeStore = () => {
         },
 
         addSet(shirt, pant, shoes) {
-            this.clothSets.push({ id: nanoid(), shirt, pant, shoes })
-        },
-
-        getShoes() {
-            return toJS(this.allShoes)
-        },
-        getShirts() {
-            return toJS(this.allShirts)
-        },
-        getPants() {
-            return toJS(this.allPants)
+            const selectedShoes = toJS(this.selectedShoes)
+            const selectedShirts = toJS(this.selectedShirts)
+            const selectedPants = toJS(this.selectedPants)
+            const clothSets = []
+            selectedPants.forEach((pant, index) => {
+                clothSets.push({ id: nanoid(), pant, shirt: selectedShirts[index], shoes: selectedShoes[index] })
+            })
+            this.clothSets = clothSets
         },
 
         addShoes(shoe) {
