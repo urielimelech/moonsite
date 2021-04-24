@@ -28,7 +28,7 @@ export const ChooseShirtsScreen = props => {
         props.history.push('/')
     }
 
-    return <View>
+    return <View style={styles.screen}>
         <Text>Search Field:</Text>
         <TextInput onChangeText={onChangeInputText} />
         <View style={styles.container}>

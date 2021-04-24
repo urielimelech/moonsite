@@ -1,4 +1,9 @@
 const styles = {
+    screen: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
     container: {
         display: 'flex',
         justifyContent: 'center'

@@ -16,9 +16,9 @@ export const SuccessScreen = props => {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <H2 style={styles.header}>🏆🚀👍 Your Successful Created Sets 👍🚀🏆</H2>
-            <CustomList listHeader='selected sets'>
+            <CustomList listHeader='selected sets' style={styles.clothSetListContainer}>
                 {wardrobeStore.clothSets.map(
                     (clothSet, index) => (
                         <ClothSetComponent
@@ -30,7 +30,7 @@ export const SuccessScreen = props => {
                     )
                 )}
             </CustomList>
-            <CustomButton buttonLabel='create more sets' onClick={onCreateMorePressed} />
+            <CustomButton buttonLabel='create more sets' onClick={onCreateMorePressed} style={styles.addMoreButton} />
         </View>
     )
 }

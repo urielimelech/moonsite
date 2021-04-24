@@ -10,8 +10,13 @@ const styles = {
     header: {
         textAlign: 'center'
     },
-    clothSetHeader: {
-
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    addMoreButton: {
+        alignSelf: 'center',
+        padding: 20
     }
 }
 export default styles
