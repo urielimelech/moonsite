@@ -5,11 +5,12 @@ import { View } from "../../BaseComponents/View"
 import { useWardrobeStore } from "../../Context/WardrobeContext"
 import styles from "./StylesChooseScreen"
 
-export const ChoosePantsScreen = () => {
+export const ChoosePantsScreen = props => {
     const wardrobeStore = useWardrobeStore()
 
     const onSelectProduct = selectedProduct => {
         wardrobeStore.addPants(selectedProduct)
+        props.history.push('/')
     }
 
     return <View style={styles.container}>

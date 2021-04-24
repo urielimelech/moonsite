@@ -42,7 +42,7 @@ export const ProductComponent = ({ product, productContainerStyle, onSelectProdu
             </View>
             <Text>selected size: {selectedSize ? selectedSize : 'not selected'}</Text>
         </View>
-        <CustomButton buttonLabel={'add product'} onClick={onSelect} style={styles.addProductButton} />
+        {onSelectProduct && <CustomButton buttonLabel={'add product'} onClick={onSelect} style={styles.addProductButton} />}
     </View>
 }
 

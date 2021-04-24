@@ -1,3 +1,4 @@
+import { toJS } from 'mobx'
 import { nanoid } from 'nanoid'
 import { sortByName } from '../utils/utils'
 
@@ -42,39 +43,36 @@ export const createWardrobeStore = () => {
         addSet(shirt, pant, shoes) {
             this.clothSets.push({ setId: nanoid(), shirt, pant, shoes })
         },
-        removeSet(setId) {
-            this.clothSets.filter(set => set.setId !== setId)
-        },
 
         getShoes() {
-            return this.allShoes
+            return toJS(this.allShoes)
         },
         getShirts() {
-            return this.allShirts
+            return toJS(this.allShirts)
         },
         getPants() {
-            return this.allPants
+            return toJS(this.allPants)
         },
 
         addShoes(shoe) {
-            this.selectedShoes.push(shoe)
+            const selectedShoes = toJS(this.selectedShoes)
+            const filteredSelectedShoes = selectedShoes.filter(selectedShoes => selectedShoes.id !== shoe.id)
+            filteredSelectedShoes.push(shoe)
+            this.selectedShoes = filteredSelectedShoes
         },
-        // removeShoe(shoeId) {
-        //     this.shoes = this.shoes.filter(shoe => shoe.shoeId !== shoeId)
-        // },
 
         addShirt(shirt) {
-            this.selectedShirts.push(shirt)
+            const selectedShirts = toJS(this.selectedShirts)
+            const filteredSelectedShirts = selectedShirts.filter(selectedShirt => selectedShirt.id !== shirt.id)
+            filteredSelectedShirts.push(shirt)
+            this.selectedShirts = filteredSelectedShirts
         },
-        // removeShirt(shirtId) {
-        //     this.shirts = this.shirts.filter(shirt => shirt.shirtId !== shirtId)
-        // },
 
         addPants(pants) {
-            this.selectedPants.push(pants)
+            const selectedPants = toJS(this.selectedPants)
+            const filteredSelectedPants = selectedPants.filter(selectedPant => pants.id !== selectedPant.id)
+            filteredSelectedPants.push(pants)
+            this.selectedPants = filteredSelectedPants
         },
-        // removePants(pantsId) {
-        //     this.pants = this.pants.filter(pant => pant.pantsId !== pantsId)
-        // }
     }
 }
