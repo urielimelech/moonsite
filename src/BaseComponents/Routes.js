@@ -1,7 +1,7 @@
 import { Switch, Route } from "react-router-dom";
-import { ChoosePantsScreen } from "../Screens/ChoosePantsScreen/ChoosePantsScreen";
-import { ChooseShirtsScreen } from "../Screens/ChooseShirtsScreen/ChooseShirtsScreen";
-import { ChooseShoeScreen } from "../Screens/ChooseShoeScreen/ChooseShoeScreen";
+import { ChoosePantsScreen } from "../Screens/ChooseScreens/ChoosePantsScreen";
+import { ChooseShirtsScreen } from "../Screens/ChooseScreens/ChooseShirtsScreen";
+import { ChooseShoeScreen } from "../Screens/ChooseScreens/ChooseShoeScreen";
 import { HomeScreen } from "../Screens/HomeScreen/HomeScreen";
 import { NavBar } from "./Navbar";
 import { View } from "./View";

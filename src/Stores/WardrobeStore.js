@@ -1,52 +1,77 @@
 import { nanoid } from 'nanoid'
-import Cloth from '../DataObjects/cloth'
+import { sortByName } from '../utils/utils'
 
 export const createWardrobeStore = () => {
     return {
-        all: [],
         clothSets: [],
-        shoes: [],
-        shirts: [],
-        pants: [],
+        allShoes: [],
+        allShirts: [],
+        allPants: [],
+        selectedShoes: [],
+        selectedPants: [],
+        selectedShirts: [],
+        shoesFound: 0,
+        shirtsFound: 0,
+        pantsFound: 0,
+
         setAll(allClothesArr) {
-            allClothesArr.forEach(cloth => {
-                this.all.push(new Cloth(cloth))
-            })
-            this.shoes = this.all.filter(cloth => cloth.type !== 'shoes')
-            this.pants = this.all.filter(cloth => cloth.type !== 'pants')
-            this.shirts = this.all.filter(cloth => cloth.type !== 'shirt')
-            console.log(this.all)
-        },
-        removeAll() {
-            this.all = []
-        },
-        getAll() {
-            return this.all
+            const allShoes = allClothesArr.filter(cloth => cloth.type !== 'shoes')
+            allShoes.sort(sortByName)
+            this.allShoes = allShoes
+            this.shoesFound = allShoes.length
+            const allPants = allClothesArr.filter(cloth => cloth.type !== 'pants')
+            allPants.sort(sortByName)
+            this.allPants = allPants
+            this.pantsFound = allPants.length
+            const allShirts = allClothesArr.filter(cloth => cloth.type !== 'shirt')
+            allShirts.sort(sortByName)
+            this.allShirts = allShirts
+            this.shirtsFound = this.allShirts.length
         },
 
-        addSet(shirtName, pantName, shoeName) {
-            this.clothSets.push({ setId: nanoid(), shirt: shirtName, pant: pantName, shoe: shoeName })
+        getShoesAmount() {
+            return this.shoesFound
+        },
+        getShirtsAmount() {
+            return this.shirtsFound
+        },
+        getPantsAmount() {
+            return this.pantsFound
+        },
+
+        addSet(shirt, pant, shoes) {
+            this.clothSets.push({ setId: nanoid(), shirt, pant, shoes })
         },
         removeSet(setId) {
             this.clothSets.filter(set => set.setId !== setId)
         },
 
+        getShoes() {
+            return this.allShoes
+        },
+        getShirts() {
+            return this.allShirts
+        },
+        getPants() {
+            return this.allPants
+        },
+
         addShoes(shoe) {
-            this.shoes.push(shoe)
+            this.selectedShoes.push(shoe)
         },
         // removeShoe(shoeId) {
         //     this.shoes = this.shoes.filter(shoe => shoe.shoeId !== shoeId)
         // },
 
         addShirt(shirt) {
-            this.shirts.push(shirt)
+            this.selectedShirts.push(shirt)
         },
         // removeShirt(shirtId) {
         //     this.shirts = this.shirts.filter(shirt => shirt.shirtId !== shirtId)
         // },
 
         addPants(pants) {
-            this.pants.push(pants)
+            this.selectedPants.push(pants)
         },
         // removePants(pantsId) {
         //     this.pants = this.pants.filter(pant => pant.pantsId !== pantsId)
