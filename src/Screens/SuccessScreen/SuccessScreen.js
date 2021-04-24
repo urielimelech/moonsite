@@ -1,10 +1,25 @@
 import React from 'react'
-import { Text } from '../../BaseComponents/Text'
+import { ClothSetComponent } from '../../BaseComponents/ClothSetComponent'
+import { CustomList } from '../../BaseComponents/CustomList'
+import { H2 } from '../../BaseComponents/Text'
 import { View } from '../../BaseComponents/View'
+import { useWardrobeStore } from '../../Context/WardrobeContext'
 import styles from './SuccessScreenStyles'
 
 export const SuccessScreen = props => {
-    return <View style={styles.container}>
-        <Text>success here</Text>
-    </View>
+
+    const wardrobeStore = useWardrobeStore()
+
+    return (
+        <View>
+            <H2 style={styles.header}>🏆🚀👍 Your Successful Created Sets 👍🚀🏆</H2>
+            <CustomList listHeader='selected sets'>
+                {wardrobeStore.clothSets.map(
+                    (clothSet, index) => (
+                        <ClothSetComponent key={clothSet.id} clothSet={clothSet} index={index} clothSetContainerStyle={styles.clothSetContainerStyle} />
+                    )
+                )}
+            </CustomList>
+        </View>
+    )
 }

@@ -37,26 +37,42 @@ export const HomeScreen = props => {
         props.history.push('/success')
     }
 
+    const onDonePress = () => {
+        const selectedShoes = toJS(wardrobeStore.selectedShoes)
+        const selectedPants = toJS(wardrobeStore.selectedPants)
+        const selectedShirts = toJS(wardrobeStore.selectedShirts)
+        selectedShoes.forEach((shoe, index) => {
+            wardrobeStore.addSet(selectedShirts[index], selectedPants[index], shoe)
+        });
+        navigateToSuccessScreen()
+    }
+
     return useObserver(() => (
         <View style={styles.screen}>
             <View style={styles.container}>
                 <View style={styles.listContainer}>
                     <CustomList listHeader='selected shirts'>
-                        {wardrobeStore.selectedShirts.map(shirt => <SelectedProductComponent product={shirt} productContainerStyle={styles.productContainer} />)}
+                        {wardrobeStore.selectedShirts.map(shirt =>
+                            <SelectedProductComponent key={shirt.id} product={shirt} productContainerStyle={styles.productContainer} />
+                        )}
                     </CustomList>
                 </View>
                 <View style={styles.listContainer}>
                     <CustomList listHeader='selected pants'>
-                        {wardrobeStore.selectedPants.map(pant => <SelectedProductComponent product={pant} productContainerStyle={styles.productContainer} />)}
+                        {wardrobeStore.selectedPants.map(pant =>
+                            <SelectedProductComponent key={pant.id} product={pant} productContainerStyle={styles.productContainer} />
+                        )}
                     </CustomList>
                 </View>
                 <View style={styles.listContainer}>
                     <CustomList listHeader='selected shoes'>
-                        {wardrobeStore.selectedShoes.map(shoe => <SelectedProductComponent product={shoe} productContainerStyle={styles.productContainer} />)}
+                        {wardrobeStore.selectedShoes.map(shoe =>
+                            <SelectedProductComponent key={shoe.id} product={shoe} productContainerStyle={styles.productContainer} />
+                        )}
                     </CustomList>
                 </View>
             </View>
-            {showSuccessButton && <CustomButton buttonLabel='done' onClick={navigateToSuccessScreen} style={styles.doneButton} />}
+            {showSuccessButton && <CustomButton buttonLabel='done' onClick={onDonePress} style={styles.doneButton} />}
         </View>
     ))
 }

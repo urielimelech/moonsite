@@ -41,7 +41,7 @@ export const createWardrobeStore = () => {
         },
 
         addSet(shirt, pant, shoes) {
-            this.clothSets.push({ setId: nanoid(), shirt, pant, shoes })
+            this.clothSets.push({ id: nanoid(), shirt, pant, shoes })
         },
 
         getShoes() {

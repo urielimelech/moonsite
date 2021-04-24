@@ -25,20 +25,20 @@ export const ProductComponent = ({ product, productContainerStyle, onSelectProdu
         }
     }
 
-    return <View key={id} style={productContainerStyle}>
+    return <View style={productContainerStyle}>
         <Text>product name: {name}</Text>
         <Text>brand: {brand}</Text>
         <View style={styles.buttonsContainer}>
             <View>
                 <Text>colors: </Text>
-                {colors.map(color => <CustomButton buttonLabel={color} onClick={() => onColorPressed(color)} />)}
+                {colors.map((color, index) => <CustomButton key={index} buttonLabel={color} onClick={() => onColorPressed(color)} />)}
             </View>
             <Text>selected color: {selectedColor ? selectedColor : 'not selected'}</Text>
         </View>
         <View style={styles.buttonsContainer}>
             <View>
                 <Text>sizes: </Text>
-                {sizes.map(size => <CustomButton buttonLabel={size} onClick={() => onSizePressed(size)} />)}
+                {sizes.map((size, index) => <CustomButton key={index} buttonLabel={size} onClick={() => onSizePressed(size)} />)}
             </View>
             <Text>selected size: {selectedSize ? selectedSize : 'not selected'}</Text>
         </View>

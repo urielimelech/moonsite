@@ -15,9 +15,10 @@ export const ChooseShirtsScreen = props => {
 
     return <View style={styles.container}>
         <CustomList listHeader={`shirts found for you: ${wardrobeStore.getShirtsAmount()}`} style={styles.list}>
-            {wardrobeStore.allShirts.map(pant =>
+            {wardrobeStore.allShirts.map(shirt =>
                 <ProductComponent
-                    product={pant}
+                    key={shirt.id}
+                    product={shirt}
                     productContainerStyle={styles.productContainer}
                     onSelectProduct={onSelectProduct}
                 />
